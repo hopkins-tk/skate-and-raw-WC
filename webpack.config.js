@@ -279,8 +279,10 @@ module.exports = ( env ) => {
        */
       new HtmlWebpackPlugin( {
         template: resolve( 'src', 'index.html' ),
-        // chunksSortMode: ()=>['polyfills','vendor','main'],
-        chunksSortMode: 'none',
+        // reverse order so we get [2:'polyfills',1:'vendor',0:'main']
+        chunksSortMode: (a,b) => {
+          return  b.id - a.id;
+        },
         // https://github.com/kangax/html-minifier#options-quick-reference
         // will minify html
         minify: ifProd(
