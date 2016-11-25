@@ -5,8 +5,18 @@ import { Component, prop, h, define } from 'skatejs';
 class XCounter extends Component {
 
   static get is(){ return 'x-counter' }
+
+  static get observedAttributes() {
+    return ['test'];
+  }
+
+  static attributeChanged() {
+    console.log("Called static");
+    console.log( arguments );
+  }
+
   renderCallback(){
-    return (<div>Hello</div>)
+    return (<div>Hello WITH test attr.</div>)
   }
 }
 // NOTE: This registration will throw

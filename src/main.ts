@@ -17,7 +17,7 @@ const App = `
     </my-smile>
 
     <h4>SkateJS WC</h4>
-    <x-counter></x-counter>
+    <x-counter test="TEST"></x-counter>
     <x-hello name="fofof"></x-hello>
 `;
 mountPoint.innerHTML = App;
