@@ -1,11 +1,15 @@
 // temporary hack to make skate 4.1 work with TS
 import 'tslib';
-(window as any).__extends = function(d: any, b: any) {
-    console.log('boo')
-  Object.setPrototypeOf(d, b);
-  var __: any = function() { this.constructor = d; }
-  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 
+import objectAssign from 'object-assign';
+if (typeof Object.assign != 'function') {
+    Object.assign = objectAssign;
+}
+
+
+import arrayFrom from 'array-from';
+if (typeof Array.from != 'function') {
+    Array.from = arrayFrom;
+}
 
 import 'skatejs-web-components';

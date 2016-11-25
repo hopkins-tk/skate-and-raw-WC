@@ -10,7 +10,7 @@
     "test:coverage": "jest --coverage --bail",
     "lint": "tslint \"src/**/*.tsx\" \"src/**/*.ts\" --exclude \"src/**/*.d.ts\"",
     "build": "npm run test:coverage && rimraf dist && webpack --env.prod",
-    "start": "webpack-dev-server --env.dev --hot --history-api-fallback",
+    "start": "webpack-dev-server --env.dev --hot --host 0.0.0.0 --history-api-fallback",
     "start:prod": "pushstate-server dist/"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "6.0.45",
+    "array-from": "^2.1.1",
     "awesome-typescript-loader": "2.2.4",
     "copy-webpack-plugin": "4.0.0",
     "css-loader": "0.25.0",
@@ -29,6 +30,7 @@
     "identity-obj-proxy": "3.0.0",
     "image-webpack-loader": "3.0.0",
     "json-loader": "0.5.4",
+    "object-assign": "^4.1.0",
     "postcss-cssnext": "2.8.0",
     "postcss-loader": "0.13.0",
     "postcss-reporter": "1.4.1",

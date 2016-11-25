@@ -1,7 +1,7 @@
 import React from '../jsx';
 import { Component, prop, h, define } from 'skatejs';
 
-const sym = Symbol();
+const sym = 'T';
 class Counter extends Component {
 
   count = 0;
