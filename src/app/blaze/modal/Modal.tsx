@@ -42,13 +42,15 @@ export class Modal extends Component {
     const {isOpen} = this;
     return [
       <style>{styles}</style>,
-      isOpen && <div class="c-overlay c-overlay--fullpage"/>,
+      isOpen && <div class="c-overlay c-overlay--fullpage"
+                     tabIndex={0}
+                     onFocus={this.focusModal}
+      />,
       isOpen &&
       <div ref={(_ref: HTMLDivElement)=>this.modalElement=_ref}
            tabIndex={0}
            class="o-modal"
            onKeydown={this.handleEsc}
-           onBlur={this.focusModal}
       >
        <Card>
          <Button
