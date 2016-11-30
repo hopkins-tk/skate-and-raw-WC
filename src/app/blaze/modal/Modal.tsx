@@ -29,10 +29,14 @@ export class Modal extends Component {
     this.isOpen = !this.isOpen;
     emit(this,'modalClose')
   }
+  private focusModal() {
+    this.modalElement.focus();
+  }
   connectedCallback(){
     super.connectedCallback();
     this.handleEsc = this.handleEsc.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.focusModal = this.focusModal.bind(this);
   }
   renderCallback() {
     const {isOpen} = this;
@@ -44,6 +48,7 @@ export class Modal extends Component {
            tabIndex={0}
            class="o-modal"
            onKeydown={this.handleEsc}
+           onBlur={this.focusModal}
       >
        <Card>
          <Button
@@ -67,7 +72,7 @@ export class Modal extends Component {
 
   renderedCallback() {
     if ( this.isOpen ) {
-      this.modalElement.focus();
+      this.focusModal();
     }
   }
 }
