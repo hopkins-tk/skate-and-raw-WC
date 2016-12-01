@@ -2,11 +2,21 @@ import { h, Component, prop, emit } from 'skatejs';
 import styles from './Modal.scss';
 import { Button } from '../button/Button';
 import { Card } from '../card/Card';
+import {css} from "../../ui-fabric/utils/css";
 
 interface ModalProps {
   isOpen?: boolean,
+  type?: keyof ModalType,
   onModalClose?: Function,
 }
+
+const ModalTypes = {
+  full: 'full',
+  ghost: 'ghost',
+}
+
+type ModalType = typeof ModalTypes;
+
 export class Modal extends Component {
   _props: ModalProps;
   static get is() { return 'bl-modal' }
@@ -14,11 +24,15 @@ export class Modal extends Component {
     return {
       isOpen: prop.boolean({
         attribute: true
+      }),
+      type: prop.string({
+        attribute: true
       })
     }
   }
 
   isOpen = false;
+  type = null;
   private modalElement: HTMLDivElement;
   private handleEsc(evt:KeyboardEvent){
     if ( evt.which === 27 ) {
@@ -39,7 +53,17 @@ export class Modal extends Component {
     this.focusModal = this.focusModal.bind(this);
   }
   renderCallback() {
-    const {isOpen} = this;
+    const {isOpen, type} = this;
+
+    const className = css(
+      'o-modal',
+      {
+        'o-modal--full': type === ModalTypes.full,
+        'o-modal--ghost': type === ModalTypes.ghost
+      }
+    );
+
+
     return [
       <style>{styles}</style>,
       isOpen && <div class="c-overlay c-overlay--fullpage"
@@ -49,10 +73,10 @@ export class Modal extends Component {
       isOpen &&
       <div ref={(_ref: HTMLDivElement)=>this.modalElement=_ref}
            tabIndex={0}
-           class="o-modal"
+           className={className}
            onKeydown={this.handleEsc}
       >
-       <Card>
+       <Card prependedClass="o-modal">
          <Button
            slot="dismiss"
            onClick={this.handleModalClose}>
