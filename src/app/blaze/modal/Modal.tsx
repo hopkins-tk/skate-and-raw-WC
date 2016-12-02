@@ -23,6 +23,7 @@ export class Modal extends Component {
   isOpen = false;
   private closeTitle = "close";
   private modalElement: HTMLDivElement;
+  private lastActiveElement: HTMLElement;
 
   private handleEsc(evt:KeyboardEvent){
     if ( evt.which === 27 ) {
@@ -61,9 +62,7 @@ export class Modal extends Component {
     const {isOpen, closeTitle} = this;
     return [
       <style>{styles}</style>,
-      isOpen && <div class="c-overlay c-overlay--fullpage"
-                     tabIndex={-1}
-      />,
+      isOpen && <div class="c-overlay c-overlay--fullpage" tabIndex={-1} onFocus={this.focusModal} />,
       isOpen &&
       <div ref={(_ref: HTMLDivElement)=>this.modalElement=_ref}
            tabIndex={-1}
@@ -96,11 +95,17 @@ export class Modal extends Component {
 
   renderedCallback() {
     if ( this.isOpen ) {
+      this.lastActiveElement = document.activeElement as HTMLElement;
+
       this.focusModal();
 
       this.preventModalBlur();
     } else {
       this.allowModalBlur();
+
+      if (this.lastActiveElement) {
+        this.lastActiveElement.focus();
+      }
     }
   }
 }
