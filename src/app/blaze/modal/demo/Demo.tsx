@@ -27,7 +27,9 @@ export class Demo extends Component {
     const {isModalOpen} = this;
     return [
       <style>{styles}</style>,
-      <Button type="info" id="modalDemoButton" tabIndex={0} onClick={this.toggleModal}>Open Modal</Button>,
+      <Button type="info"
+              onClick={this.toggleModal}
+      >Open Modal</Button>,
       <Modal isOpen={isModalOpen} onModalClose={this.toggleModal} closeTitle="Zavřít">
         <span slot="title">Modal <em>heading</em></span>
         <span>

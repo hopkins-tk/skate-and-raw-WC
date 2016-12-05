@@ -53,7 +53,6 @@ export class Button extends Component {
       >
         <slot/>
       </button>,
-      <pre>type: {type}</pre>,
     ]
   }
 }

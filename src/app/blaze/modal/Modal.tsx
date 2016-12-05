@@ -62,7 +62,10 @@ export class Modal extends Component {
     const {isOpen, closeTitle} = this;
     return [
       <style>{styles}</style>,
-      isOpen && <div class="c-overlay c-overlay--fullpage" tabIndex={-1} onFocus={this.focusModal} />,
+      isOpen &&
+      <div class="c-overlay c-overlay--fullpage"
+           tabIndex={-1}
+           onFocus={this.focusModal} />,
       isOpen &&
       <div ref={(_ref: HTMLDivElement)=>this.modalElement=_ref}
            tabIndex={-1}

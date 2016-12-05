@@ -24,22 +24,6 @@ const App = () => (`
           <demo-buttons></demo-buttons>
       </section>
     </fieldset>        
-    
-    <fieldset>
-        <legend><h4>Raw WC</h4></legend>
-        
-        <my-smile tabindex="1" smile=":)">
-          <p>This will be projected to default slot</p>
-          <p slot="description">this is desc...</p>
-        </my-smile>
-    </fieldset>
-    
-    <fieldset>
-      <legend><h4>SkateJS WC</h4></legend>
-      <x-counter></x-counter>
-      <my-counter></my-counter>
-      <x-hello name="fofof"></x-hello>
-    </fieldset>
   </section>
 `);
 
